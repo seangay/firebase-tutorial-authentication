@@ -117,6 +117,27 @@
     </ul>
   </div>
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDMzd1Kpo5bgOJTGXwNEA7pzBTyk1vamJc",
+      authDomain: "net-ninja-game-guides-e2cd0.firebaseapp.com",
+      databaseURL: "https://net-ninja-game-guides-e2cd0.firebaseio.com",
+      projectId: "net-ninja-game-guides-e2cd0",
+      appId: "1:805814989483:web:373c2f67aa8f462d"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    //setup auth/firestore refs
+    const auth = firebase.auth();
+    const firestore = firebase.firestore();
+  </script>
+
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="scripts/auth.js"></script>
