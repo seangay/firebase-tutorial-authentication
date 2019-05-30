@@ -5,6 +5,8 @@ auth.onAuthStateChanged((user) => {
         firestoreDB.collection('guides').onSnapshot((snapshot) => {
             setupGuides(snapshot.docs);
             setupUI(user);
+        }).catch((error) => {
+            console.log(error.message)
         });
     } else {
         setupGuides([]);
