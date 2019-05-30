@@ -1,3 +1,12 @@
+//listen for auth status changes
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        console.log('user logged in: ', user);
+    } else {
+        console.log('user logged out.');
+    }
+});
+
 //signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (evt) => {
@@ -17,9 +26,7 @@ signupForm.addEventListener('submit', (evt) => {
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (evt) => {
     evt.preventDefault();
-    auth.signOut().then(() => {
-        console.log('user signed out');
-    });
+    auth.signOut();
 });
 
 //login
@@ -34,7 +41,5 @@ loginForm.addEventListener('submit', (evt) => {
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
-
-        console.log(response.user);
     });
 });
