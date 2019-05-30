@@ -1,5 +1,20 @@
-//set up documents
 const guideList = document.querySelector('.guides');
+const loggedOutLinks = document.querySelectorAll('.logged-out');
+const loggedInLinks = document.querySelectorAll('.logged-in');
+
+const setupUI = (user) => {
+  var loggedInStyle = 'none';
+  var loggedOutStyle = 'block';
+  if (user) {
+    loggedInStyle = 'block';
+    loggedOutStyle = 'none';
+  }
+
+  loggedInLinks.forEach((item) => item.style.display = loggedInStyle);
+  loggedOutLinks.forEach((item) => item.style.display = loggedOutStyle);
+}
+
+//set up documents
 const setupGuides = (data) => {
   let html = '';
 
