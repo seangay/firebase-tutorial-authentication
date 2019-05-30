@@ -5,8 +5,6 @@ signupForm.addEventListener('submit', (evt) => {
     const email = signupForm['signup-email'].value;
     const password = signupForm['signup-password'].value;
 
-    console.log(email + " | " + password);
-
     //sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(response => {
         const modal = document.querySelector('#modal-signup');
@@ -21,5 +19,22 @@ logout.addEventListener('click', (evt) => {
     evt.preventDefault();
     auth.signOut().then(() => {
         console.log('user signed out');
+    });
+});
+
+//login
+const loginForm = document.querySelector("#login-form");
+loginForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
+
+    //login the user with these values
+    auth.signInWithEmailAndPassword(email, password).then((response) => {
+        const modal = document.querySelector('#modal-login');
+        M.Modal.getInstance(modal).close();
+        loginForm.reset();
+
+        console.log(response.user);
     });
 });
