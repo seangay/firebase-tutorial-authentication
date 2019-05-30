@@ -2,16 +2,21 @@
 const guideList = document.querySelector('.guides');
 const setupGuides = (data) => {
   let html = '';
-  data.forEach(doc => {
-    const guide = doc.data();
-    const li = `
-      <li>
-        <div class="collapsible-header grey lighten-4">${guide.title}</div>
-        <div class="collapsible-body white">${guide.content}</div>
-      </li>
-    `;
-    html += li;    
-  });
+
+  if (data.length) {
+    data.forEach(doc => {
+      const guide = doc.data();
+      const li = `
+        <li>
+          <div class="collapsible-header grey lighten-4">${guide.title}</div>
+          <div class="collapsible-body white">${guide.content}</div>
+        </li>
+      `;
+      html += li;    
+    });
+  } else {
+    html = '<h5 class="center-align">Login to see guides</h5>';
+  }
   guideList.innerHTML = html;
 }
 
