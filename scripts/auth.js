@@ -2,7 +2,7 @@
 auth.onAuthStateChanged((user) => {
     if (user) {
         //get data
-        firestoreDB.collection('guides').get().then((snapshot) => {
+        firestoreDB.collection('guides').onSnapshot((snapshot) => {
             setupGuides(snapshot.docs);
             setupUI(user);
         });
