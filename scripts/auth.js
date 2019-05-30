@@ -12,6 +12,26 @@ auth.onAuthStateChanged((user) => {
     }
 });
 
+//create a new guide
+const createForm = document.querySelector('#create-form');
+createForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    
+    const title = createForm['title'].value;
+    const content = createForm['content'].value;
+
+    //call firestore to save the document to the guides collection
+    firestoreDB.collection('guides').add({ title: title, content: content })
+    .then(() => {
+        const modal = document.querySelector('#modal-create');
+        M.Modal.getInstance(modal).close();
+        createForm.reset();
+    })
+    .catch((error) => {
+        console.log(error.message);
+    });
+});
+
 //signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (evt) => {
