@@ -1,3 +1,17 @@
+//add admin cloud function
+const adminForm = document.querySelector('.admin-actions');
+adminForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const adminEmail = adminForm['admin-email'].value;
+    //This functions lines up with that in functions/index.js which has been set up in firebase.
+    const addAdminRole = functions.httpsCallable('addAdminRole');
+    addAdminRole({ email: adminEmail }).then((result) => {
+        console.log(result);
+
+    });
+});
+
 //listen for auth status changes
 auth.onAuthStateChanged((user) => {
     if (user) {
