@@ -5,7 +5,7 @@ auth.onAuthStateChanged((user) => {
         firestoreDB.collection('guides').onSnapshot((snapshot) => {
             setupGuides(snapshot.docs);
             setupUI(user);
-        }).catch((error) => {
+        }, (error) => {
             console.log(error.message)
         });
     } else {
@@ -43,9 +43,13 @@ signupForm.addEventListener('submit', (evt) => {
 
     //sign up the user
     auth.createUserWithEmailAndPassword(email, password).then(response => {
+        return firestoreDB.collection('users').doc(response.user.uid).set({
+            bio: signupForm['signup-bio'].value,
+        });
+    }).then(() => {
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close();
-        signupForm.reset();
+        signupForm.reset();        
     });
 });
 
